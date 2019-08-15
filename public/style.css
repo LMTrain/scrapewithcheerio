@@ -1,10 +1,10 @@
 .container-background {
   background-size: 100%;   
-  background-image: url("./image/background.jpg");
+  background-image: url("./image/3background.jpg");
 }
 
 .active {
-  color: #ee6e73;
+  color:red;
   font-weight: 300;
 }
 
@@ -18,20 +18,30 @@
   padding-top: 5%;
 }
 
-#articles {
-  color: yellow;
+#articles {  
+  color: whitesmoke;
   cursor:pointer;
   font-weight: bold;
   font-size: 26px;
   display: inline-block;
   overflow: auto;
-  width: 1000px;
+  width: 1300px;
   height: 450px;
 }
 
 #articles:hover{
-  color: red;
+  color: darkcyan;
 
+}
+
+#savenote {
+  font-size: 26px;
+  font-weight: bold;
+  color: darkcyan;
+  background-color: black;
+}
+#savenote:hover{
+  color: red;
 }
 
 #notes {
@@ -59,7 +69,7 @@ textarea {
   margin-top: 5px;
 }
 h1 {
-  margin-top: -85px;
+  margin-top: -135px;
   color: whitesmoke;
   text-align: center;
   font-weight: bold;  
@@ -70,7 +80,7 @@ h1 {
 h2 {
   text-align: center;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 28px;
   color: whitesmoke;
   line-height: 110%;
   margin: 1.78rem 0 1.424rem 0;
