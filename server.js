@@ -26,7 +26,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/scrapenews", { useNewUrlParser: true });
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapenews";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+// mongoose.connect("mongodb://localhost/scrapenews", { useNewUrlParser: true });
 
 // Routes
 
