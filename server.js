@@ -91,8 +91,8 @@ app.get("/articles", function(req, res) {
 });
 
 // Route for sorting Aricle Alphabetically
-app.get("/tittle", function(req, res) {  
-  db.Article.find().sort({ title: 1 }, function(error, found) {
+app.get("/title", function(req, res) {  
+  db.Article.find().sort({ title: -1 }, function(error, found) {
     // Log any errors if the server encounters one
     if (error) {
       console.log(error);
