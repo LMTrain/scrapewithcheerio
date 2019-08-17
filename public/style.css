@@ -22,7 +22,7 @@
   color: whitesmoke;
   cursor:pointer;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 36px;
   display: inline-block;
   overflow: auto;
   width: 1300px;
@@ -84,6 +84,21 @@ h2 {
   color: whitesmoke;
   line-height: 110%;
   margin: 1.78rem 0 1.424rem 0;
+}
+
+h3 {
+  cursor:pointer;
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+  color: whitesmoke;
+  line-height: 110%;
+  margin: 1.78rem 0 1.424rem 0;
+}
+
+h3:hover{
+  color: darkcyan;
+
 }
 
 #titleinput{

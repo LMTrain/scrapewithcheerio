@@ -17,7 +17,7 @@ var ArticleSchema = new Schema({
     required: true
   },
    // `image` is required and of type String
-   image: {
+   summary: {
     type: String,
     required: false
   },

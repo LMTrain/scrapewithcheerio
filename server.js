@@ -29,7 +29,7 @@ app.use(express.static("public"));
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapenews";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
 
 // mongoose.connect("mongodb://localhost/scrapenews", { useNewUrlParser: true });
 
@@ -43,21 +43,20 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $(".block h3").each(function(i, element) {
-      // Save an empty result object
+    $(".block").each(function(i, element) {
+    
       var result = {};
-
-      // Add the text and href of every link, and save them as properties of the result object
+     
       result.title = $(this)
         .children("a")
         .text();
       result.link = $(this)
         .children("a")
         .attr("href");       
+        result.summary = $(this)
+        .children(".deck")
+        .text();   
       
-      result.image = $(this)
-        .children("a")
-        .attr("src");
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
@@ -92,7 +91,7 @@ app.get("/articles", function(req, res) {
 
 // Route for sorting Aricle Alphabetically
 app.get("/title", function(req, res) {  
-  db.Article.find().sort({ title: -1 }, function(error, found) {
+  db.Article.find().sort({ title: -1 }).exec(function(error, found) {
     // Log any errors if the server encounters one
     if (error) {
       console.log(error);
@@ -124,10 +123,7 @@ app.get("/articles/:id", function(req, res) {
 app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
   db.Note.create(req.body)
-    .then(function(dbNote) {
-      // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
-      // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-      // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+    .then(function(dbNote) {      
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
     })
     .then(function(dbArticle) {
