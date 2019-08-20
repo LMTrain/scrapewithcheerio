@@ -37,10 +37,20 @@
 #savenote {
   font-size: 26px;
   font-weight: bold;
-  color: darkcyan;
+  color: whitesmoke;
   background-color: black;
 }
 #savenote:hover{
+  color: darkcyan;
+}
+
+#deletenote {
+  font-size: 26px;
+  font-weight: bold;
+  color: rgb(20, 101, 223);
+  background-color: black;
+}
+#deletenote:hover{
   color: red;
 }
 
